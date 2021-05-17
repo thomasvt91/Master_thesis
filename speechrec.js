@@ -28,7 +28,9 @@ d3.on("connect", () => {
 });
 
 function tts(){
+    console.log('tts called')
     var msg = new SpeechSynthesisUtterance();
+    console.log('msg init')
     msg.text = "Hallo. Hier spricht dein Double Roboter!";
     ms.lang = 'de-DE'
     msg.volume = 1;
