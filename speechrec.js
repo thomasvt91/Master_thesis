@@ -10,9 +10,9 @@ d3.on("connect", () => {
     });
     d3.sendCommand("screensaver.nudge");
     d3.sendCommand("speaker.enable");
-    d3.sendCommand("gui.accessoryWebView.open",{url: "https://www.doublerobotics.com", trusted: false});
+    d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
     // d3.sendCommand("base.requestStatus");
-    tts();
+    // tts();
 });
 
 function tts(){
