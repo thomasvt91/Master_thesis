@@ -22,10 +22,11 @@ function tts(){
     msg.rate = 1;
     msg.pitch = 2;
     msg.onend = function (e){
-        document.querySelector('#output').innerText = event.elapsedTime/1000) + 'Sek';
-}
+        (document.querySelector('#output').innerText = (event.elapsedTime/1000) + 'Sek');
+    }
     // d3.sendCommand("speaker.enable")
     speechSynthesis.speak(msg);
+
 }
 
 
