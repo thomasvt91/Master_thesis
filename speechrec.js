@@ -2,6 +2,17 @@ const DRDoubleSDK = require("./DRDoubleSDK.js");
 
 var d3 = new DRDoubleSDK();
 
+var http = require('http');
+var fs = require('fs');
+http.createServer(function (req, res) {
+    fs.readFile('index.html', function(err, data) {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        return res.end();
+    });
+}).listen(3000);
+
+
 d3.on("connect", () => {
     d3.sendCommand("events.subscribe", {
         events: [
@@ -11,7 +22,7 @@ d3.on("connect", () => {
     d3.sendCommand("screensaver.nudge");
     d3.sendCommand("speaker.enable");
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
-    d3.sendCommand("gui.accessoryWebView.show");
+    d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
     // d3.sendCommand("base.requestStatus");
     // tts();
 });
