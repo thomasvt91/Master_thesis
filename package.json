@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "@google-cloud/text-to-speech": "^3.2.1",
+    "play-sound": "^1.1.3",
+    "text-to-speech-js": "^1.1.10"
+  },
+  "name": "double_speech_njs",
+  "version": "1.0.0",
+  "main": "speechrec.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasvt91/Master_thesis.git"
+  },
+  "author": "Thomas Väth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomasvt91/Master_thesis/issues"
+  },
+  "homepage": "https://github.com/thomasvt91/Master_thesis#readme",
+  "description": ""
+}

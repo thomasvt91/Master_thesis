@@ -24,15 +24,15 @@ d3.on("connect", () => {
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
     d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
     // d3.sendCommand("base.requestStatus");
-    tts();
+    console.log("D3 connected")
 });
 
-function tts(){
+function tts_mozilla(){
     console.log('tts called')
     var msg = new SpeechSynthesisUtterance();
     console.log('msg init')
     msg.text = "Hallo. Hier spricht dein Double Roboter!";
-    ms.lang = 'de-DE'
+    ms.lang = 'de-DE'11
     msg.volume = 1;
     msg.rate = 1;
     msg.pitch = 2;
@@ -43,6 +43,8 @@ function tts(){
     speechSynthesis.speak(msg);
 
 }
+
+
 
 function sst(){
 
