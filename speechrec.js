@@ -24,7 +24,7 @@ d3.on("connect", () => {
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
     d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
     // d3.sendCommand("base.requestStatus");
-    // tts();
+    tts();
 });
 
 function tts(){
@@ -41,6 +41,10 @@ function tts(){
     }
     // d3.sendCommand("speaker.enable")
     speechSynthesis.speak(msg);
+
+}
+
+function sst(){
 
 }
 
