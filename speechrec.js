@@ -39,14 +39,14 @@ function tts_mozilla(){
     msg.onend = function (e){
         (document.querySelector('#output').innerText = (event.elapsedTime/1000) + 'Sek');
     }
-    // d3.sendCommand("speaker.enable")
+    d3.sendCommand("speaker.enable")
     speechSynthesis.speak(msg);
 
 }
 
 
 
-function sst(){
+function stt(){
 
 }
 
