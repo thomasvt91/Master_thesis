@@ -32,7 +32,7 @@ function tts_mozilla(){
     var msg = new SpeechSynthesisUtterance();
     console.log('msg init')
     msg.text = "Hallo. Hier spricht dein Double Roboter!";
-    ms.lang = 'de-DE'11
+    ms.lang = 'de-DE';
     msg.volume = 1;
     msg.rate = 1;
     msg.pitch = 2;
