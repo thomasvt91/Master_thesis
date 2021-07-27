@@ -5,6 +5,7 @@ var d3 = new DRDoubleSDK();
 var http = require('http');
 var fs = require('fs');
 const tts = require('@google-cloud/text-to-speech');
+var player = require('play-sound');
 // var speechSythesis = require('speech-synthesis')
 
 http.createServer(function (req, res) {
