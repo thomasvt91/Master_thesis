@@ -25,6 +25,8 @@ d3.on("connect", () => {
     // d3.sendCommand("speaker.enable");
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
     d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
+    texttospeech();
+    tts_mozilla();
     // d3.sendCommand("base.requestStatus");
     console.log("D3 connected")
 });
