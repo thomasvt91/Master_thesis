@@ -1,6 +1,8 @@
 const tts = require('@google-cloud/text-to-speech');
 const util = require('util')
 
+var player = require('play-sound')
+
 function texttospeech(){
 
     const client = new tts.TextToSpeechClient();
@@ -14,10 +16,10 @@ function texttospeech(){
         const [response] = await client.SynthesizeSpeech(request);
         const writeFile = util.promisify(fs.writeFile);
         await writeFile('output.mp3', response.audioContent, 'binary');
-        console.log('Audio content written to file: output.mp3');
+        // console.log('Audio content written to file: output.mp3');
     }
     quickStart();
-    var player = require('play-sound')(opts = {})
+    // var player = require('play-sound')(opts = {})
 
     player.play('./output.mp3', function (err) {
         if (err) throw err;

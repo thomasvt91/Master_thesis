@@ -22,12 +22,36 @@ d3.on("connect", () => {
         ]
     });
     d3.sendCommand("screensaver.nudge");
-    d3.sendCommand("speaker.enable");
+    // d3.sendCommand("speaker.enable");
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
     d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
     // d3.sendCommand("base.requestStatus");
     console.log("D3 connected")
 });
+
+function texttospeech(){
+
+    const client = new tts.TextToSpeechClient();
+    async function quickStart(){
+        const text = "Hallo. Hier spricht dein Roboter!";
+        const request = {
+            input: {text: text},
+            voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
+            audioConfig: {audioEncoding: 'MP3'}
+        };
+        const [response] = await client.SynthesizeSpeech(request);
+        const writeFile = util.promisify(fs.writeFile);
+        await writeFile('output.mp3', response.audioContent, 'binary');
+        // console.log('Audio content written to file: output.mp3');
+    }
+    quickStart();
+    // var player = require('play-sound')(opts = {})
+    d3.sendCommand('speaker.enable')
+    player.play('./output.mp3', function (err) {
+        if (err) throw err;
+        console.log("Audio finished");
+    });
+}
 
 function tts_mozilla(){
     console.log('tts called')
@@ -43,12 +67,16 @@ function tts_mozilla(){
     }
     d3.sendCommand("speaker.enable")
     speechSynthesis.speak(msg);
+    d3.sendCommand("speaker.disable")
+
 
 }
 
 function tts_speechsynth(){
     d3.sendCommand("speaker.enable")
     speechSythesis('Hallo, dies ist ein Test!','de-DE');
+    d3.sendCommand("speaker.disable")
+
 }
 
 
@@ -57,7 +85,13 @@ function stt(){
 
 }
 
+function retract(){
+    d3.sendCommand('base.kickstand.retract')
+}
 
+function deploy(){
+    d3.sendCommand('base.kickstand.deploy')
+}
 
 // Shutdown
 var alreadyCleanedUp = false;
