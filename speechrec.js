@@ -4,6 +4,8 @@ var d3 = new DRDoubleSDK();
 
 var http = require('http');
 var fs = require('fs');
+var speechSythesis = require('speech-synthesis')
+
 http.createServer(function (req, res) {
     fs.readFile('index.html', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
@@ -42,6 +44,11 @@ function tts_mozilla(){
     d3.sendCommand("speaker.enable")
     speechSynthesis.speak(msg);
 
+}
+
+function tts_speechsynth(){
+    d3.sendCommand("speaker.enable")
+    speechSythesis('Hallo, dies ist ein Test!','de-DE');
 }
 
 
