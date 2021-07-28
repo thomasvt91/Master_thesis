@@ -7,7 +7,8 @@ var fs = require('fs');
 const tts = require('@google-cloud/text-to-speech');
 const util = require("util");
 var player = require('play-sound') (opts = {});
-// var spoken = require('spoken');
+
+var spoken = require('spoken');
 const domino = require('domino');
 
 const open = require('open');
@@ -43,38 +44,39 @@ d3.on("connect", () => {
     if (typeof window !== "undefined") {
         w = window.localStorage.getItem('w');
     }
-    open('http://localhost:3000')
-    // d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
-    // texttospeech();
+    // open('http://localhost:3000');
+    d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
+    texttospeech();
     // tts_spoken();
     // tts_mozilla();
     // d3.sendCommand("base.requestStatus");
     console.log("D3 connected")
 });
 
-// function texttospeech(){
-//
-//     const client = new tts.TextToSpeechClient();
-//     async function quickStart(){
-//         const text = "Hallo. Hier spricht dein Roboter!";
-//         const request = {
-//             input: {text: text},
-//             voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
-//             audioConfig: {audioEncoding: 'MP3'}
-//         };
-//         const [response] = await client.synthesizeSpeech(request);
-//         const nwriteFile = util.promisify(fs.writeFile);
-//         await writeFile('output.mp3', response.audioContent);
-//         // console.log('Audio content written to file: output.mp3');
-//     }
-//     quickStart();
-//     // var player = require('play-sound')(opts = {})
-//     d3.sendCommand('speaker.enable')
-//     player.play('./output.mp3', function (err) {
-//         if (err) throw err;
-//         console.log("Audio finished");
-//     });
-// }
+function texttospeech(){
+
+    const client = new tts.TextToSpeechClient();
+    async function quickStart(){
+        const text = "Hallo. Hier spricht dein Roboter!";
+        const request = {
+            input: {text: text},
+            voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
+            audioConfig: {audioEncoding: 'MP3'}
+        };
+        const [response] = await client.synthesizeSpeech(request);
+        // const writeFile = util.promisify(fs.writeFile);
+        await fs.writeFile('output.mp3', response.audioContent, 'binary');
+
+        // console.log('Audio content written to file: output.mp3');
+    }
+    quickStart();
+    // var player = require('play-sound')(opts = {})
+    d3.sendCommand('speaker.enable')
+    player.play('./output.mp3', function (err) {
+        if (err) throw err;
+        console.log("Audio finished");
+    });
+}
 
 // function tts_spoken() {
 //     async function speak(){
