@@ -5,6 +5,7 @@ var d3 = new DRDoubleSDK();
 var http = require('http');
 var fs = require('fs');
 const tts = require('@google-cloud/text-to-speech');
+const util = require("util");
 var player = require('play-sound') (opts = {});
 // var speechSythesis = require('speech-synthesis')
 
@@ -43,9 +44,9 @@ function texttospeech(){
             voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
             audioConfig: {audioEncoding: 'MP3'}
         };
-        const [response] = await client.SynthesizeSpeech(request);
+        const [response] = await client.synthesizeSpeech(request);
         const writeFile = util.promisify(fs.writeFile);
-        await writeFile('output.mp3', response.audioContent, 'binary');
+        await writeFile('output.mp3', response.audioContent);
         // console.log('Audio content written to file: output.mp3');
     }
     quickStart();
