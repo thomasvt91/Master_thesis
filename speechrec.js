@@ -53,7 +53,7 @@ d3.on("connect", () => {
     // texttospeech();
     // tts_spoken();
     gtts_tts();
-    tts_mozilla();
+    // tts_mozilla();
     // d3.sendCommand("base.requestStatus");
     console.log("D3 connected")
 });
@@ -109,31 +109,31 @@ function gtts_tts(){
 //     d3.sendCommand("speaker.disable");
 // }
 
-function tts_mozilla(){
-    console.log('tts called')
-    var msg = new SpeechSynthesisUtterance();
-    console.log('msg init')
-    msg.text = "Hallo. Hier spricht dein Double Roboter!";
-    msg.lang = 'de-DE';
-    msg.volume = 1;
-    msg.rate = 1;
-    msg.pitch = 2;
-    msg.onend = function (e){
-        (document.querySelector('#output').innerText = (event.elapsedTime/1000) + 'Sek');
-    }
-    d3.sendCommand("speaker.enable")
-    speechSynthesis.speak(msg);
-    d3.sendCommand("speaker.disable")
+// function tts_mozilla(){
+//     console.log('tts called')
+//     var msg = new SpeechSynthesisUtterance();
+//     console.log('msg init')
+//     msg.text = "Hallo. Hier spricht dein Double Roboter!";
+//     msg.lang = 'de-DE';
+//     msg.volume = 1;
+//     msg.rate = 1;
+//     msg.pitch = 2;
+//     msg.onend = function (e){
+//         (document.querySelector('#output').innerText = (event.elapsedTime/1000) + 'Sek');
+//     }
+//     d3.sendCommand("speaker.enable")
+//     speechSynthesis.speak(msg);
+//     d3.sendCommand("speaker.disable")
+//
+//
+// }
 
-
-}
-
-function tts_say(){
-    d3.sendCommand("speaker.enable")
-    speechSythesis('Hallo, dies ist ein Test!','de-DE');
-    d3.sendCommand("speaker.disable")
-
-}
+// function tts_say(){
+//     d3.sendCommand("speaker.enable")
+//     speechSythesis('Hallo, dies ist ein Test!','de-DE');
+//     d3.sendCommand("speaker.disable")
+//
+// }
 
 
 
