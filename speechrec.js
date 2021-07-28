@@ -7,6 +7,7 @@ var fs = require('fs');
 const tts = require('@google-cloud/text-to-speech');
 const util = require("util");
 var player = require('play-sound') (opts = {});
+var spoken = require('spoken');
 // var speechSythesis = require('speech-synthesis')
 
 http.createServer(function (req, res) {
