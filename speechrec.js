@@ -7,6 +7,10 @@ var fs = require('fs');
 const tts = require('@google-cloud/text-to-speech');
 const util = require("util");
 var player = require('play-sound') (opts = {});
+// const say = require('say').Say
+var gtts = require('node-gtts')('de');
+var path = require('path')
+
 
 // var spoken = require('spoken');
 const domino = require('domino');
@@ -46,9 +50,10 @@ d3.on("connect", () => {
     }
     // open('http://localhost:3000');
     d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
-    texttospeech();
+    // texttospeech();
     // tts_spoken();
-    // tts_mozilla();
+    gtts_tts();
+    tts_mozilla();
     // d3.sendCommand("base.requestStatus");
     console.log("D3 connected")
 });
@@ -64,18 +69,33 @@ function texttospeech(){
             audioConfig: {audioEncoding: 'MP3'}
         };
         const [response] = await client.synthesizeSpeech(request);
-        // const writeFile = util.promisify(fs.writeFile);
-        await fs.writeFile('output.mp3', response.audioContent, 'binary');
+        const writeFile = util.promisify(fs.writeFile);
+        await writeFile('output.mp3', response.audioContent,);
 
-        // console.log('Audio content written to file: output.mp3');
+        console.log('Audio content written to file: output.mp3');
     }
     quickStart();
     // var player = require('play-sound')(opts = {})
-    d3.sendCommand('speaker.enable')
+    d3.sendCommand('speaker.enable');
     player.play('./output.mp3', function (err) {
         if (err) throw err;
         console.log("Audio finished");
     });
+}
+
+function gtts_tts(){
+    var filepath = path.join(__dirname,'output.vaw');
+    var txt = 'Hallo, hier ist dein Double Roboter!';
+    gtts.save(filepath, txt, function (){
+        console.log('save done!')
+    });
+    d3.sendCommand('speaker.enable');
+    player.play('./output.mp3', function (err) {
+        if (err) throw err;
+        console.log("Audio finished");
+    });
+    d3.sendCommand('speaker.disable');
+
 }
 
 // function tts_spoken() {
@@ -94,7 +114,7 @@ function tts_mozilla(){
     var msg = new SpeechSynthesisUtterance();
     console.log('msg init')
     msg.text = "Hallo. Hier spricht dein Double Roboter!";
-    ms.lang = 'de-DE';
+    msg.lang = 'de-DE';
     msg.volume = 1;
     msg.rate = 1;
     msg.pitch = 2;
@@ -108,12 +128,12 @@ function tts_mozilla(){
 
 }
 
-// function tts_speechsynth(){
-//     d3.sendCommand("speaker.enable")
-//     speechSythesis('Hallo, dies ist ein Test!','de-DE');
-//     d3.sendCommand("speaker.disable")
-//
-// }
+function tts_say(){
+    d3.sendCommand("speaker.enable")
+    speechSythesis('Hallo, dies ist ein Test!','de-DE');
+    d3.sendCommand("speaker.disable")
+
+}
 
 
 
