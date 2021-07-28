@@ -8,7 +8,15 @@ const tts = require('@google-cloud/text-to-speech');
 const util = require("util");
 var player = require('play-sound') (opts = {});
 var spoken = require('spoken');
+const domino = require('domino');
 // var speechSythesis = require('speech-synthesis')
+import { readFileSync } from 'fs';
+
+const DIST_FOLDER = join(process.cwd(), 'dist');
+const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
+const winObj = domino.createWindow(template);global['window'] = winObj;
+global['document'] = winObj.document;
+
 
 http.createServer(function (req, res) {
     fs.readFile('index.html', function(err, data) {
