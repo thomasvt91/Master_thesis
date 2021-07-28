@@ -46,7 +46,7 @@ d3.on("connect", () => {
     open('http://localhost:3000')
     // d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
     // texttospeech();
-    tts_spoken();
+    // tts_spoken();
     // tts_mozilla();
     // d3.sendCommand("base.requestStatus");
     console.log("D3 connected")
@@ -76,16 +76,16 @@ d3.on("connect", () => {
 //     });
 // }
 
-function tts_spoken() {
-    async function speak(){
-        spoken.recognition.language = navigator.language || 'de-DE';
-        let voices = (await spoken.voices()).filter( v => !v.lang.indexOf('de'))
-        spoken().say('hallo, hier spricht dein Roboter!', voices[0])
-    }
-    d3.sendCommand("speaker.enable");
-    speak();
-    d3.sendCommand("speaker.disable");
-}
+// function tts_spoken() {
+//     async function speak(){
+//         spoken.recognition.language = navigator.language || 'de-DE';
+//         let voices = (await spoken.voices()).filter( v => !v.lang.indexOf('de'))
+//         spoken().say('hallo, hier spricht dein Roboter!', voices[0])
+//     }
+//     d3.sendCommand("speaker.enable");
+//     speak();
+//     d3.sendCommand("speaker.disable");
+// }
 
 function tts_mozilla(){
     console.log('tts called')
