@@ -52,7 +52,7 @@ d3.on("connect", () => {
     d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
     // texttospeech();
     // tts_spoken();
-    gtts_tts();
+    // gtts_tts();
     // tts_mozilla();
     // d3.sendCommand("base.requestStatus");
     console.log("D3 connected")
