@@ -28,34 +28,46 @@ d3.on("connect", () => {
     // d3.sendCommand("speaker.enable");
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
     d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
-    texttospeech();
+    // texttospeech();
+    tts_spoken();
     // tts_mozilla();
     // d3.sendCommand("base.requestStatus");
     console.log("D3 connected")
 });
 
-function texttospeech(){
+// function texttospeech(){
+//
+//     const client = new tts.TextToSpeechClient();
+//     async function quickStart(){
+//         const text = "Hallo. Hier spricht dein Roboter!";
+//         const request = {
+//             input: {text: text},
+//             voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
+//             audioConfig: {audioEncoding: 'MP3'}
+//         };
+//         const [response] = await client.synthesizeSpeech(request);
+//         const nwriteFile = util.promisify(fs.writeFile);
+//         await writeFile('output.mp3', response.audioContent);
+//         // console.log('Audio content written to file: output.mp3');
+//     }
+//     quickStart();
+//     // var player = require('play-sound')(opts = {})
+//     d3.sendCommand('speaker.enable')
+//     player.play('./output.mp3', function (err) {
+//         if (err) throw err;
+//         console.log("Audio finished");
+//     });
+// }
 
-    const client = new tts.TextToSpeechClient();
-    async function quickStart(){
-        const text = "Hallo. Hier spricht dein Roboter!";
-        const request = {
-            input: {text: text},
-            voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
-            audioConfig: {audioEncoding: 'MP3'}
-        };
-        const [response] = await client.synthesizeSpeech(request);
-        const writeFile = util.promisify(fs.writeFile);
-        await writeFile('output.mp3', response.audioContent);
-        // console.log('Audio content written to file: output.mp3');
+function tts_spoken() {
+    async function speak(){
+        spoken.recognition.language = navigator.language || 'de-DE';
+        let voices = (await spoken.voices()).filter( v => !v.lang.indexOf('de'))
+        spoken().say('hallo, hier spricht dein Roboter!', voices[0])
     }
-    quickStart();
-    // var player = require('play-sound')(opts = {})
-    d3.sendCommand('speaker.enable')
-    player.play('./output.mp3', function (err) {
-        if (err) throw err;
-        console.log("Audio finished");
-    });
+    d3.sendCommand("speaker.enable");
+    speak();
+    d3.sendCommand("speaker.disable");
 }
 
 function tts_mozilla(){
