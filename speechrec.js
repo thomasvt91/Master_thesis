@@ -9,13 +9,15 @@ const util = require("util");
 var player = require('play-sound') (opts = {});
 var spoken = require('spoken');
 const domino = require('domino');
-// var speechSythesis = require('speech-synthesis')
-import { readFileSync } from 'fs';
 
-const DIST_FOLDER = join(process.cwd(), 'dist');
-const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
-const winObj = domino.createWindow(template);global['window'] = winObj;
-global['document'] = winObj.document;
+const open = require('open');
+// var speechSythesis = require('speech-synthesis')
+// import { readFileSync } from 'fs';
+
+// const DIST_FOLDER = join(process.cwd(), 'dist');
+// const template = fs.readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
+// const winObj = domino.createWindow(template);global['window'] = winObj;
+// global['document'] = winObj.document;
 
 
 http.createServer(function (req, res) {
@@ -36,7 +38,13 @@ d3.on("connect", () => {
     d3.sendCommand("screensaver.nudge");
     // d3.sendCommand("speaker.enable");
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
-    d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
+
+    let w = null;
+    if (typeof window !== "undefined") {
+        w = window.localStorage.getItem('w');
+    }
+    open('http://localhost:3000')
+    // d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
     // texttospeech();
     tts_spoken();
     // tts_mozilla();
