@@ -8,7 +8,7 @@ const tts = require('@google-cloud/text-to-speech');
 const util = require("util");
 var player = require('play-sound') (opts = {});
 
-var spoken = require('spoken');
+// var spoken = require('spoken');
 const domino = require('domino');
 
 const open = require('open');
