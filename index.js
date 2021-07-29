@@ -54,7 +54,7 @@ function onConnect() {
 
 		// Turn on the screen, but allow the screensaver to kick in later
 		DRDoubleSDK.sendCommand("screensaver.nudge");
-		console.log('connected from index.js')
+		console.log('connected from index.js');
 		// DRDoubleSDK.sendCommand("speaker.enable")
 		// tts();
 
@@ -79,7 +79,7 @@ function onConnect() {
 // }
 
 function tts_googlecloud(){
-	console.log('tts_googlecloud called ')
+	console.log('tts_googlecloud called ');
 	const client = new google_cloud_tts.TextToSpeechClient();
 	async function quickStart(){
 		const text = "Hallo. Hier spricht dein Roboter!";
@@ -105,7 +105,7 @@ function tts_googlecloud(){
 }
 
 function tts_spoken() {
-	console.log('tts_spoken called');
+	// console.log('tts_spoken called');
     async function speak(){
         spoken.recognition.language = navigator.language || 'de-DE';
         let voices = (await spoken.voices()).filter( v => !v.lang.indexOf('de'))
@@ -118,7 +118,7 @@ function tts_spoken() {
 }
 
 function gtts_tts(){
-	console.log('gtts_tts called');
+	// console.log('gtts_tts called');
 	var filepath = path.join(__dirname,'output.wav');
 	var txt = 'Hallo, hier ist dein Double Roboter!';
 	gtts.save(filepath, txt, function (){
@@ -161,17 +161,18 @@ function tts_mozilla(){
 //
 // }
 function retract(){
-	console.log("retract called");
+	// console.log("retract called");
 	d3.sendCommand('base.kickstand.retract');
 }
 
 function deploy(){
-	console.log("Deploy called");
-	d3.sendCommand('base.kickstand.deploy');
+	// console.log("Deploy called");
+	d3.sendCommand('base.kickstansd.deploy');
 }
 
 window.onload = () => {
 	// REQUIRED: Tell d3-api that we're still running ok (faster than every 3000 ms) or the page will be reloaded.
+	// console.log("window onload");
 	window.setInterval(() => {
 		DRDoubleSDK.resetWatchdog();
 	}, 2000);
