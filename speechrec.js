@@ -14,9 +14,9 @@ var path = require('path')
 
 
 // var spoken = require('spoken');
-const domino = require('domino');
+// const domino = require('domino');
 
-const open = require('open');
+// const open = require('open');
 // var speechSythesis = require('speech-synthesis')
 // import { readFileSync } from 'fs';
 
@@ -46,11 +46,11 @@ d3.on("connect", () => {
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
 
     d3.sendCommand("gui.go.standby", {"url":"http://localhost:3000"});
-    let w = null;
-    if (typeof window !== "undefined") {
-        w = window.localStorage.getItem('w');
-    }
-    console.log("D3 connected")
+    // let w = null;
+    // if (typeof window !== "undefined") {
+    //     w = window.localStorage.getItem('w');
+    // }
+    console.log("D3 connected");
 
     // open('http://localhost:3000');
     // d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
@@ -142,12 +142,6 @@ function gtts_tts(){
 //     d3.sendCommand("speaker.disable")
 //
 // }
-
-
-
-function stt(){
-
-}
 
 function retract(){
     console.log("retract called");

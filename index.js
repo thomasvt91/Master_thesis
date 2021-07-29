@@ -54,6 +54,7 @@ function onConnect() {
 
 		// Turn on the screen, but allow the screensaver to kick in later
 		DRDoubleSDK.sendCommand("screensaver.nudge");
+		console.log('connected from index.js')
 		// DRDoubleSDK.sendCommand("speaker.enable")
 		// tts();
 
