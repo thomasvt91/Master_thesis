@@ -118,14 +118,14 @@ function tts_spoken() {
 
 function gtts_tts(){
 	console.log('gtts_tts called');
-	var filepath = path.join(__dirname,'output.vaw');
+	var filepath = path.join(__dirname,'output.wav');
 	var txt = 'Hallo, hier ist dein Double Roboter!';
 	gtts.save(filepath, txt, function (){
 		console.log('save done!');
 	});
 	DRDoubleSDK.sendCommand('speaker.enable');
-	DRDoubleSDK.sendCommand('speaker.requestVolume{"percent: 1"');
-	player.play('./output.mp3', function (err) {
+	DRDoubleSDK.sendCommand('speaker.requestVolume{"percent: 0.75"');
+	player.play('./output.wav', function (err) {
 		if (err) throw err;
 		console.log("Audio finished");
 	});
@@ -159,6 +159,15 @@ function tts_mozilla(){
 //     DRDoubleSDK.sendCommand("speaker.disable")
 //
 // }
+function retract(){
+	console.log("retract called");
+	d3.sendCommand('base.kickstand.retract');
+}
+
+function deploy(){
+	console.log("Deploy called");
+	d3.sendCommand('base.kickstand.deploy');
+}
 
 window.onload = () => {
 	// REQUIRED: Tell d3-api that we're still running ok (faster than every 3000 ms) or the page will be reloaded.
