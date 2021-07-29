@@ -1,19 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
     <meta charset="utf-8">
-    <title>Speech Recognition</title>
+    <title>Example</title>
     <link href="index.css" rel="stylesheet" />
     <script src="index.js"></script>
 </head>
 <body>
-    <h1>Test Speech Recognition and Synthesis</h1>
-    <input type = "button" value = "TTS Spoken" onclick = "tts_spoken()">
-    <input type = "button" value = "TTS GTTS" onclick =  "gtts_tts()">
-    <input type = "button" value = "TTS Googlecloud"  onclick = "tts_googlecloud()" >
-    <input type = "button" value = "TTS Mozilla" onclick = "tts_mozilla()" >
-    <input type="button" value="Retract" onclick="retract()">
-    <input type="button" value="Deploy" onclick="deploy()">
+<div id="root">
+    <h1>Basic Standby Example</h1>
+    <h2>Network</h2>
+    <table class="data">
+        <tr>
+            <td>SSID</td>
+            <td id="wifi_ssid"></td>
+        </tr>
+        <tr>
+            <td>IP</td>
+            <td id="wifi_ip"></td>
+        </tr>
+    </table>
+    <br>
+    <h2>Base</h2>
+    <table class="data">
+        <tr>
+            <td>TTS</td>
+            <td>
+                <!--					<input type="button" value="Up" onclick=tts()>-->
+                <input type = "button" value = "TTS Spoken" onclick = "tts_spoken()">
+                <input type = "button" value = "TTS GTTS" onclick =  "gtts_tts()">
+                <input type = "button" value = "TTS Googlecloud"  onclick = "tts_googlecloud()" >
+                <input type = "button" value = "TTS Mozilla" onclick = "tts_mozilla()" >
 
+            </td>
+        </tr>
+        <tr>
+            <td>Kickstand</td>
+            <td>
+                <input type="button" value="Retract" onclick="retract()">
+                <input type="button" value="Deploy" onclick="deploy()">
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>Speech Recognition</title>-->
+<!--    <link href="index.css" rel="stylesheet" />-->
+<!--    <script src="index.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Test Speech Recognition and Synthesis</h1>-->
+<!--    <input type = "button" value = "TTS Spoken" onclick = "tts_spoken()">-->
+<!--    <input type = "button" value = "TTS GTTS" onclick =  "gtts_tts()">-->
+<!--    <input type = "button" value = "TTS Googlecloud"  onclick = "tts_googlecloud()" >-->
+<!--    <input type = "button" value = "TTS Mozilla" onclick = "tts_mozilla()" >-->
+<!--    <input type="button" value="Retract" onclick="retract()">-->
+<!--    <input type="button" value="Deploy" onclick="deploy()">-->
+
+<!--</body>-->
+<!--</html>-->
