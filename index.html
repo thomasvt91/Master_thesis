@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <title>Speech Recognition</title>
     <link href="index.css" rel="stylesheet" />
-    <script src="speechrec.js"></script>
+    <script src="index.js"></script>
 </head>
 <body>
     <h1>Test Speech Recognition and Synthesis</h1>
-    <button type = "button" onclick = "texttospeech()"> Test TTS </button>
-    <button type = "button" onclick = "stt()" > Test SST </button>
-    <button type = "button" onclick = "retract()" > Retract stand </button>
-    <button type = "button" onclick = "deploy()" > Deploy stand </button>
-
+    <input type = "button" value = "TTS Spoken" onclick = "tts_spoken()">
+    <input type = "button" value = "TTS GTTS" onclick =  "gtts_tts()">
+    <input type = "button" value = "TTS Googlecloud"  onclick = "tts_googlecloud()" >
+    <input type = "button" value = "TTS Mozilla" onclick = "tts_mozilla()" >
+    <input type="button" value="Retract" onclick="DRDoubleSDK.sendCommand('base.kickstand.retract')">
+    <input type="button" value="Deploy" onclick="DRDoubleSDK.sendCommand('base.kickstand.deploy')">
 
 </body>
 </html>
