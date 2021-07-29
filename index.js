@@ -78,7 +78,7 @@ function onConnect() {
 // }
 
 function tts_googlecloud(){
-
+	console.log('tts_googlecloud called ')
 	const client = new google_cloud_tts.TextToSpeechClient();
 	async function quickStart(){
 		const text = "Hallo. Hier spricht dein Roboter!";
@@ -104,6 +104,7 @@ function tts_googlecloud(){
 }
 
 function tts_spoken() {
+	console.log('tts_spoken called');
     async function speak(){
         spoken.recognition.language = navigator.language || 'de-DE';
         let voices = (await spoken.voices()).filter( v => !v.lang.indexOf('de'))
@@ -116,6 +117,7 @@ function tts_spoken() {
 }
 
 function gtts_tts(){
+	console.log('gtts_tts called');
 	var filepath = path.join(__dirname,'output.vaw');
 	var txt = 'Hallo, hier ist dein Double Roboter!';
 	gtts.save(filepath, txt, function (){
@@ -132,7 +134,7 @@ function gtts_tts(){
 }
 
 function tts_mozilla(){
-    console.log('tts called')
+    console.log('tts mozilla called');
     var msg = new SpeechSynthesisUtterance();
     console.log('msg init')
     msg.text = "Hallo. Hier spricht dein Double Roboter!";

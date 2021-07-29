@@ -50,36 +50,38 @@ d3.on("connect", () => {
     if (typeof window !== "undefined") {
         w = window.localStorage.getItem('w');
     }
+    console.log("D3 connected")
+
     // open('http://localhost:3000');
     // d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
-
     // texttospeech();
     // tts_spoken();
     // gtts_tts();
     // tts_mozilla();
     // d3.sendCommand("base.requestStatus");
-    console.log("D3 connected")
 });
 
 function texttospeech(){
-
+    console.log('googleapi_tts called');
     const client = new tts.TextToSpeechClient();
     async function quickStart(){
         const text = "Hallo. Hier spricht dein Roboter!";
         const request = {
             input: {text: text},
             voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
-            audioConfig: {audioEncoding: 'MP3'}
+            audioConfig: {audioEncoding: 'wav'}
         };
         const [response] = await client.synthesizeSpeech(request);
         const writeFile = util.promisify(fs.writeFile);
-        await writeFile('output.mp3', response.audioContent,);
+        await writeFile('output.mp3', response.audioContent);
 
         console.log('Audio content written to file: output.mp3');
     }
     quickStart();
     // var player = require('play-sound')(opts = {})
     d3.sendCommand('speaker.enable');
+    d3.sendCommand('speaker.requestVolume{"percent: 0.75"');
+
     player.play('./output.mp3', function (err) {
         if (err) throw err;
         console.log("Audio finished");
@@ -87,13 +89,16 @@ function texttospeech(){
 }
 
 function gtts_tts(){
-    var filepath = path.join(__dirname,'output.vaw');
+    console.log('gtts_tts called');
+    var filepath = path.join(__dirname,'output.wav');
     var txt = 'Hallo, hier ist dein Double Roboter!';
     gtts.save(filepath, txt, function (){
         console.log('save done!')
     });
     d3.sendCommand('speaker.enable');
-    player.play('./output.mp3', function (err) {
+    d3.sendCommand('speaker.requestVolume{"percent: 0.75"');
+
+    player.play('./output.wav', function (err) {
         if (err) throw err;
         console.log("Audio finished");
     });
@@ -145,11 +150,11 @@ function stt(){
 }
 
 function retract(){
-    d3.sendCommand('base.kickstand.retract')
+    d3.sendCommand('base.kickstand.retract');
 }
 
 function deploy(){
-    d3.sendCommand('base.kickstand.deploy')
+    d3.sendCommand('base.kickstand.deploy');
 }
 
 // Shutdown
