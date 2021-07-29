@@ -121,7 +121,7 @@ function gtts_tts(){
 	var filepath = path.join(__dirname,'output.vaw');
 	var txt = 'Hallo, hier ist dein Double Roboter!';
 	gtts.save(filepath, txt, function (){
-		console.log('save done!')
+		console.log('save done!');
 	});
 	DRDoubleSDK.sendCommand('speaker.enable');
 	DRDoubleSDK.sendCommand('speaker.requestVolume{"percent: 1"');

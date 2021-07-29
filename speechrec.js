@@ -93,7 +93,7 @@ function gtts_tts(){
     var filepath = path.join(__dirname,'output.wav');
     var txt = 'Hallo, hier ist dein Double Roboter!';
     gtts.save(filepath, txt, function (){
-        console.log('save done!')
+        console.log('save done!');
     });
     d3.sendCommand('speaker.enable');
     d3.sendCommand('speaker.requestVolume{"percent: 0.75"');
@@ -150,10 +150,12 @@ function stt(){
 }
 
 function retract(){
+    console.log("retract called");
     d3.sendCommand('base.kickstand.retract');
 }
 
 function deploy(){
+    console.log("Deploy called");
     d3.sendCommand('base.kickstand.deploy');
 }
 
