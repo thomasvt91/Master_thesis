@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@google-cloud/text-to-speech": "^3.2.6",
+    "audic": "^2.0.0",
     "domino": "^2.1.6",
     "node-gtts": "^2.0.2",
     "open": "^8.2.1",

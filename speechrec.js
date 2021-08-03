@@ -4,12 +4,13 @@ var d3 = new DRDoubleSDK();
 
 var http = require('http');
 var fs = require('fs');
-const tts = require('@google-cloud/text-to-speech');
+// const tts = require('@google-cloud/text-to-speech');
 const util = require("util");
-var player = require('play-sound') (opts = {});
+// var player = require('play-sound') (opts = {});
 // const say = require('say').Say
 var gtts = require('node-gtts')('de');
 var path = require('path')
+const Audic = require('audic');
 
 
 
@@ -56,37 +57,37 @@ d3.on("connect", () => {
     // d3.sendCommand("gui.accessoryWebView.open", {"url":"http://localhost:3000", "trusted": true});
     // texttospeech();
     // tts_spoken();
-    // gtts_tts();
+    gtts_tts();
     // tts_mozilla();
     // d3.sendCommand("base.requestStatus");
 });
 
-function texttospeech(){
-    console.log('googleapi_tts called');
-    const client = new tts.TextToSpeechClient();
-    async function quickStart(){
-        const text = "Hallo. Hier spricht dein Roboter!";
-        const request = {
-            input: {text: text},
-            voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
-            audioConfig: {audioEncoding: 'wav'}
-        };
-        const [response] = await client.synthesizeSpeech(request);
-        const writeFile = util.promisify(fs.writeFile);
-        await writeFile('output.mp3', response.audioContent);
-
-        console.log('Audio content written to file: output.mp3');
-    }
-    quickStart();
-    // var player = require('play-sound')(opts = {})
-    d3.sendCommand('speaker.enable');
-    d3.sendCommand('speaker.requestVolume{"percent: 0.75"');
-
-    player.play('./output.mp3', function (err) {
-        if (err) throw err;
-        console.log("Audio finished");
-    });
-}
+// function texttospeech(){
+//     console.log('googleapi_tts called');
+//     const client = new tts.TextToSpeechClient();
+//     async function quickStart(){
+//         const text = "Hallo. Hier spricht dein Roboter!";
+//         const request = {
+//             input: {text: text},
+//             voice: {languageCode: 'de-DE', ssmlGender: 'MALE'},
+//             audioConfig: {audioEncoding: 'wav'}
+//         };
+//         const [response] = await client.synthesizeSpeech(request);
+//         const writeFile = util.promisify(fs.writeFile);
+//         await writeFile('output.mp3', response.audioContent);
+//
+//         console.log('Audio content written to file: output.mp3');
+//     }
+//     quickStart();
+//     // var player = require('play-sound')(opts = {})
+//     d3.sendCommand('speaker.enable');
+//     d3.sendCommand('speaker.requestVolume{"percent: 0.75"');
+//
+//     player.play('./output.mp3', function (err) {
+//         if (err) throw err;
+//         console.log("Audio finished");
+//     });
+// }
 
 function gtts_tts(){
     console.log('gtts_tts called');
@@ -96,12 +97,12 @@ function gtts_tts(){
         console.log('save done!');
     });
     d3.sendCommand('speaker.enable');
-    d3.sendCommand('speaker.requestVolume{"percent: 0.75"');
-
-    player.play('./output.wav', function (err) {
-        if (err) throw err;
-        console.log("Audio finished");
-    });
+    d3.sendCommand('speaker.requestVolume{"percent: 0.2"');
+    new Audic('output.wav').play();
+    // player.play('./output.wav', function (err) {
+    //     if (err) throw err;
+    //     console.log("Audio finished");
+    // });
     d3.sendCommand('speaker.disable');
 
 }
