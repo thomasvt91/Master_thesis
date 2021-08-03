@@ -33,7 +33,7 @@ http.createServer(function (req, res) {
         res.write(data);
         return res.end();
     });
-}).listen(3000);
+}).listen(8000);
 
 
 d3.on("connect", () => {
@@ -46,7 +46,7 @@ d3.on("connect", () => {
     // d3.sendCommand("speaker.enable");
     // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
 
-    d3.sendCommand("gui.go.standby", {"url":"http://localhost:3000"});
+    d3.sendCommand("gui.go.standby", {"url":"http://localhost:8000"});
     // let w = null;
     // if (typeof window !== "undefined") {
     //     w = window.localStorage.getItem('w');
