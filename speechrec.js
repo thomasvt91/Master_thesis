@@ -44,9 +44,9 @@ d3.on("connect", () => {
     });
     d3.sendCommand("screensaver.nudge");
     // d3.sendCommand("speaker.enable");
-    // d3.sendCommand("gui.accessoryWebView.open",{url: ".", trusted: false});
+    d3.sendCommand("gui.accessoryWebView.open",{url: "http://localhost:8000", trusted: false});
 
-    d3.sendCommand("gui.go.standby", {"url":"http://localhost:8000"});
+    // d3.sendCommand("gui.go.standby", {"url":"http://localhost:8000"});
     // let w = null;
     // if (typeof window !== "undefined") {
     //     w = window.localStorage.getItem('w');
@@ -97,13 +97,13 @@ function gtts_tts(){
         console.log('save done!');
     });
     d3.sendCommand('speaker.enable');
-    d3.sendCommand('speaker.requestVolume{"percent: 0.2"');
+    d3.sendCommand('speaker.requestVolume{"percent: 0.75"');
     new Audic('output.wav').play();
     // player.play('./output.wav', function (err) {
     //     if (err) throw err;
     //     console.log("Audio finished");
     // });
-    d3.sendCommand('speaker.disable');
+    // d3.sendCommand('speaker.disable');
 
 }
 
