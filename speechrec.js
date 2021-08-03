@@ -98,7 +98,9 @@ function gtts_tts(){
     });
     d3.sendCommand('speaker.enable');
     d3.sendCommand('speaker.requestVolume{"percent: 0.75"');
+    console.log('speakers enabled');
     new Audic('output.wav').play();
+    console.log('audio played');
     // player.play('./output.wav', function (err) {
     //     if (err) throw err;
     //     console.log("Audio finished");
